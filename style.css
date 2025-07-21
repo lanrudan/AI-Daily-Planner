@@ -1,0 +1,530 @@
+/* style.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffe6f7; /* 浅蓝色背景 -> 浅粉色背景 */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex; /* 让 body 作为 flex 容器 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    min-height: 100vh; /* 确保 body 至少占据整个视口高度 */
+}
+
+.main-wrapper {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* 内部填充 */
+    width: 95%; /* 占用大部分宽度 */
+    max-width: 1400px; /* 增加最大宽度 */
+    height: calc(100vh - 40px); /* 占据视口高度，留出上下20px padding */
+    display: flex;
+    flex-direction: column; /* 头部在上，内容在下 */
+    overflow: hidden; /* 防止内容溢出 */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px; /* 标题和内容之间的间距 */
+    flex-shrink: 0;
+}
+
+.header h1 {
+    color: #502c3e; /* 深蓝色标题 -> 深紫粉色 */
+    margin-bottom: 8px;
+    font-size: 2.2em;
+}
+
+.header .welcome-message {
+    color: #666;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.content-wrapper {
+    display: flex; /* 左右分栏的核心 */
+    flex-grow: 1; /* 占据 main-wrapper 剩余的垂直空间 */
+    gap: 20px; /* 两栏之间的间距 */
+    overflow: hidden; /* 防止内部滚动条影响外部布局 */
+}
+
+/* 新增：左侧总栏的布局 */
+.left-column {
+    display: flex;
+    flex-direction: column; /* 内部元素垂直堆叠 */
+    flex: 7; /* 左侧占据 70% 的宽度 (保持原 chat-section 的比例) */
+    gap: 20px; /* 周历和聊天之间的高度间距 */
+    overflow: hidden;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f0d0e6; /* 边框颜色 -> 粉色系 */
+    border-radius: 8px;
+    background-color: #fff7fc; /* 分区背景 -> 浅粉色系 */
+    padding: 15px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* 确保内部滚动 */
+}
+
+/* 聊天界面样式 */
+.chat-section {
+    flex: 3; /* 占据 left-column 的 30% 高度 */
+    min-height: 200px; /* 确保聊天区域有最小高度 */
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* 聊天框占据大部分空间 */
+    overflow-y: auto; /* 允许垂直滚动 */
+    padding-right: 5px; /* 留出滚动条空间 */
+}
+
+/* 滚动条美化 (仅支持部分浏览器) */
+.chat-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background-color: #efd9a7; /* 滚动条拇指 -> 浅粉色 */
+    border-radius: 4px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background-color: #fff0f8; /* 滚动条轨道 -> 浅粉色 */
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 18px;
+    margin-bottom: 12px;
+    max-width: 85%;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
+
+.message.user {
+    background-color: #c7e9b0; /* 用户消息，保持绿色系，未变 */
+    align-self: flex-end;
+    margin-left: auto;
+    color: #333;
+}
+
+.message.ai {
+    background-color: #f7e0f2; /* AI 消息背景 -> 浅紫粉色 */
+    align-self: flex-start;
+    margin-right: auto;
+    color: #333;
+    white-space: pre-wrap; /* 允许文本换行并保留空白符 */
+}
+
+/* 针对食谱内容的特定样式 */
+.message.ai h3, .message.ai h4, .message.ai ul, .message.ai ol {
+    margin-bottom: 5px;
+    margin-top: 10px;
+    padding-left: 20px; /* 缩进列表 */
+}
+.message.ai ul li, .message.ai ol li {
+    margin-bottom: 3px;
+}
+
+
+.input-container {
+    display: flex;
+    margin-top: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0; /* 防止输入框被压缩 */
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    background-color: #fcfdff;
+    color: #333;
+}
+
+#user-input::placeholder {
+    color: #999;
+}
+
+#send-btn {
+    background-color: #8fbc8f; /* 保持绿色 */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    outline: none;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+#send-btn:hover {
+    background-color: #7aa77a; /* 保持绿色 */
+}
+
+/* 规划本界面样式 (与以前相同) */
+.plan-section {
+    flex: 3; /* 右侧规划本占据 30% 的宽度 */
+}
+
+.plan-section h2 {
+    text-align: center;
+    color: #502c3e; /* 深蓝色 -> 深紫粉色 */
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.add-plan-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.add-plan-container input[type="date"] {
+    flex-basis: 40%;
+    padding: 8px 10px;
+    border: 1px solid #f0d0e6; /* 边框颜色 -> 粉色系 */
+    border-radius: 5px;
+    font-size: 0.9em;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.add-plan-container input[type="text"] {
+    flex-basis: calc(60% - 10px);
+    flex-grow: 1;
+    padding: 8px 10px;
+    border: 1px solid #f0d0e6; /* 边框颜色 -> 粉色系 */
+    border-radius: 5px;
+    font-size: 0.9em;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.add-plan-container button {
+    background-color: #8fbc8f; /* 保持绿色 */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+
+.add-plan-container button:hover {
+    background-color: #7aa77a; /* 保持绿色 */
+}
+
+@media (max-width: 768px) {
+    .add-plan-container {
+        flex-direction: column;
+    }
+    .add-plan-container input,
+    .add-plan-container button {
+        width: 100%;
+        flex-basis: auto;
+        margin-top: 10px;
+    }
+    .add-plan-container input:first-child {
+        margin-top: 0;
+    }
+}
+
+
+.plan-list-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    padding-right: 5px;
+}
+
+.plan-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.plan-list-container::-webkit-scrollbar-thumb {
+    background-color: #efd9a7; /* 滚动条拇指 -> 浅粉色 */
+    border-radius: 4px;
+}
+
+.plan-list-container::-webkit-scrollbar-track {
+    background-color: #fff0f8; /* 滚动条轨道 -> 浅粉色 */
+}
+
+.plan-item {
+    background-color: #fff0f8; /* 规划项背景 -> 浅粉色 */
+    border: 1px solid #c7e9b0; /* 边框保持绿色，未变 */
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.plan-item.completed .plan-content {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.plan-item .plan-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.plan-item .plan-date {
+    font-weight: bold;
+    color: #bd4a69; /* 日期文字 -> 偏玫红的粉色 */
+    font-size: 0.95em;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.countdown {
+    font-size: 0.8em;
+    font-weight: normal;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.countdown-today {
+    background-color: #ffeb3b; /* 保持黄色，未变 */
+    color: #333;
+    border: 1px solid #fdd835;
+}
+
+.countdown-future {
+    background-color: #8bc34a; /* 保持绿色，未变 */
+    color: white;
+    border: 1px solid #7cb342;
+}
+
+.countdown-past {
+    background-color: #ff9800; /* 保持橙色，未变 */
+    color: white;
+    border: 1px solid #fb8c00;
+}
+
+
+.plan-item .plan-content {
+    color: #333;
+    font-size: 1em;
+}
+
+.plan-item .delete-btn {
+    background-color: #dc3545; /* 保持红色，未变 */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85em;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease;
+}
+
+.plan-item .delete-btn:hover {
+    background-color: #c82333; /* 保持红色，未变 */
+}
+
+.no-plans {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+}
+
+/* 新增：周历区域样式 */
+.calendar-section {
+    flex: 7; /* 占据 left-column 的 70% 高度 */
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px; /* 调整内边距 */
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-shrink: 0; /* 防止被压缩 */
+}
+
+.calendar-header h2 {
+    margin: 0;
+    color: #502c3e; /* 深蓝色 -> 深紫粉色 */
+    font-size: 1.5em;
+    white-space: nowrap; /* 防止标题换行 */
+}
+
+.calendar-header button {
+    background-color: #5cb85c; /* 保持绿色，未变 */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+.calendar-header button:hover {
+    background-color: #4cae4c; /* 保持绿色，未变 */
+}
+
+.week-days-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 列，每列等宽 */
+    gap: 10px; /* 日期格之间的间距 */
+    flex-grow: 1; /* 占据剩余空间 */
+    overflow-y: auto; /* 允许日程过多时滚动 */
+    padding-right: 5px; /* 留出滚动条空间 */
+}
+
+/* 滚动条美化 */
+.week-days-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.week-days-container::-webkit-scrollbar-thumb {
+    background-color: #c7e9b0; /* 滚动条拇指保持绿色，未变 */
+    border-radius: 4px;
+}
+
+.week-days-container::-webkit-scrollbar-track {
+    background-color: #fff7fc; /* 滚动条轨道 -> 浅粉色系 */
+}
+
+
+.day-cell {
+    background-color: #fcfdff;
+    border: 1px solid #f7e0f2; /* 边框颜色 -> 浅紫粉色 */
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100px; /* 确保每个日期格有最小高度 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    overflow: hidden; /* 防止内部内容溢出 */
+}
+
+.day-cell.today {
+    border: 2px solid #5cb85c; /* 今天的日期有特殊边框，保持绿色，未变 */
+    box-shadow: 0 0 8px rgba(92, 184, 92, 0.3);
+}
+
+.day-cell .day-header {
+    font-weight: bold;
+    color: #bd4a69; /* 日期头部文字 -> 偏玫红的粉色 */
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.day-cell .day-header .date-number {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.day-cell .day-events {
+    flex-grow: 1; /* 事件列表占据剩余空间 */
+    overflow-y: auto; /* 允许日期内事件过多时滚动 */
+    font-size: 0.8em;
+    color: #555;
+    padding-right: 2px; /* 留出小滚动条空间 */
+}
+
+/* 小滚动条美化 */
+.day-cell .day-events::-webkit-scrollbar {
+    width: 4px;
+}
+.day-cell .day-events::-webkit-scrollbar-thumb {
+    background-color: #f0d0e6; /* 滚动条拇指 -> 粉色系 */
+    border-radius: 2px;
+}
+.day-cell .day-events::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+
+.day-cell .day-event-item {
+    background-color: #ffe6f7; /* 事件项背景 -> 浅粉色 */
+    border-left: 3px solid #8fbc8f; /* 左侧绿色边条，保持绿色，未变 */
+    padding: 4px 6px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    word-break: break-all; /* 防止长文本溢出 */
+}
+
+/* 媒体查询：小屏幕适应性 */
+@media (max-width: 1024px) {
+    .content-wrapper {
+        flex-direction: column; /* 小屏幕下左右分栏变为上下堆叠 */
+        height: auto; /* 允许内容撑开高度 */
+    }
+    .left-column, .plan-section {
+        flex: none; /* 取消 flex 比例 */
+        width: 100%; /* 占据全部宽度 */
+        margin-bottom: 20px; /* 堆叠时增加间距 */
+    }
+    .chat-section {
+        height: auto; /* 高度自适应 */
+        min-height: 250px; /* 确保聊天区可见 */
+    }
+    .calendar-section {
+        height: auto; /* 高度自适应 */
+        min-height: 300px; /* 确保周历可见 */
+    }
+    .week-days-container {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 更小的列，自适应排列 */
+        gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-wrapper {
+        padding: 10px;
+        height: auto;
+    }
+    .header h1 {
+        font-size: 1.8em;
+    }
+    .section {
+        padding: 10px;
+    }
+    .calendar-header h2 {
+        font-size: 1.2em;
+    }
+    .calendar-header button {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+    .day-cell {
+        min-height: 80px;
+        padding: 6px;
+    }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 智能日程规划</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="header">
+            <h1>AI 智能日程规划</h1>
+            <p class="welcome-message">欢迎使用AI智能日程规划！请告诉我您的安排。</p>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="left-column">
+                <div id="calendar-section" class="section calendar-section">
+                    <div class="calendar-header">
+                        <button id="prev-week-btn">&lt; 上一周</button>
+                        <h2 id="current-week-display"></h2>
+                        <button id="next-week-btn">下一周 &gt;</button>
+                    </div>
+                    <div id="week-days-container" class="week-days-container">
+                        </div>
+                </div>
+
+                <div id="chat-section" class="section chat-section">
+                    <div id="chat-box" class="chat-container">
+                        </div>
+                    <div class="input-container">
+                        <input type="text" id="user-input" placeholder="例如: 明天下午3点和李明开会 或 推荐一个健康的晚餐食谱">
+                        <button id="send-btn">发送</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="plan-section" class="section plan-section">
+                <h2>我的规划本</h2>
+                <div class="add-plan-container">
+                    <input type="date" id="plan-date-input">
+                    <input type="text" id="plan-item-input" placeholder="添加新规划事项...">
+                    <button id="add-plan-btn">添加</button>
+                </div>
+                <div id="plan-list" class="plan-list-container">
+                    <p class="no-plans" style="display: none;">暂无规划事项。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
