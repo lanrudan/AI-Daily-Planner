@@ -1,1 +1,3 @@
-# AI-Daily-Planner
+# 这是一个利用ai进行事件记录的网站
+# 接的千问ai
+# .env中的API请黏贴自己的API
